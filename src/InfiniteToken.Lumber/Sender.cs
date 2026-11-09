@@ -247,7 +247,8 @@ internal sealed class Sender
             using var response = await http.SendAsync(request, HttpCompletionOption.ResponseContentRead, attempt.Token).ConfigureAwait(false);
             var status = (int)response.StatusCode;
             string? message = null;
-            if (status >= 300)
+            // .NET Framework leaves Content null on an answer with no body
+            if (status >= 300 && response.Content != null)
             {
                 message = Json.MessageOf(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
             }
