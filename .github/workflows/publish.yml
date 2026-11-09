@@ -1,0 +1,36 @@
+name: Publish
+run-name: Publish ${{ github.ref_name }}
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: nuget
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json
+          dotnet-version: 8.0.x
+      - run: dotnet build -c Release
+      - run: dotnet test -c Release --no-build
+      # The tag must be the version being published (Directory.Build.props)
+      - run: test "v$(dotnet msbuild src/InfiniteToken.Lumber -getProperty:Version)" = "${GITHUB_REF_NAME}"
+      - run: dotnet pack -c Release --no-build -o artifacts
+      # NuGet trusted publishing: no stored API key. NuGet checks this workflow's identity against the trusted
+      # publishing policy on nuget.org (owner jayrdeaton, repo infinitetoken/Lumber-DotNet, workflow publish.yml,
+      # environment nuget) and hands back a key that lasts an hour. The user is the nuget.org profile name, which every
+      # package page shows anyway.
+      - uses: NuGet/login@v1
+        id: login
+        with:
+          user: jayrdeaton
+      # Pushes each .nupkg and the .snupkg (symbols) beside it
+      - run: dotnet nuget push "artifacts/*.nupkg" --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate

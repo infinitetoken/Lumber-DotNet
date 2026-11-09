@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/InfiniteToken.Lumber.Extensions.Logging/InfiniteToken.Lumber.Extensions.Logging.csproj" />
+    <Project Path="src/InfiniteToken.Lumber.Serilog/InfiniteToken.Lumber.Serilog.csproj" />
+    <Project Path="src/InfiniteToken.Lumber/InfiniteToken.Lumber.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/InfiniteToken.Lumber.Tests/InfiniteToken.Lumber.Tests.csproj" />
+  </Folder>
+</Solution>

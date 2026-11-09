@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- The newest LTS and the oldest .NET the packages build for. On Windows, .NET Framework 4.8 too, which runs the
+         netstandard2.0 build: the managed AES-GCM, as on Unity. TestNetFramework=true builds it anywhere. -->
+    <TargetFrameworks>net10.0;net8.0</TargetFrameworks>
+    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('Windows')) Or '$(TestNetFramework)' == 'true'">$(TargetFrameworks);net48</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <IsPackable>false</IsPackable>
+    <RootNamespace>InfiniteToken.Lumber.Tests</RootNamespace>
+    <NoWarn>$(NoWarn);CA2007;xUnit1051</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\InfiniteToken.Lumber\InfiniteToken.Lumber.csproj" />
+    <ProjectReference Include="..\..\src\InfiniteToken.Lumber.Extensions.Logging\InfiniteToken.Lumber.Extensions.Logging.csproj" />
+    <ProjectReference Include="..\..\src\InfiniteToken.Lumber.Serilog\InfiniteToken.Lumber.Serilog.csproj" />
+    <PackageReference Include="JsonSchema.Net" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" />
+    <PackageReference Include="xunit.v3" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+    <PackageReference Include="System.Text.Json" />
+  </ItemGroup>
+
+  <!-- Lumber-Kit's contract, synced by scripts/sync-contract.sh -->
+  <ItemGroup>
+    <None Include="..\contract\*.json" Link="contract\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>InfiniteToken.Lumber.Serilog</RootNamespace>
+    <Description>Serilog sink for Lumber: sends Serilog events to Lumber, encrypted end to end with AES-256-GCM.</Description>
+    <PackageTags>lumber;logging;serilog;serilog-sink;cloud-logging;encryption;end-to-end-encryption</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InfiniteToken.Lumber\InfiniteToken.Lumber.csproj" />
+    <PackageReference Include="Serilog" />
+  </ItemGroup>
+
+</Project>

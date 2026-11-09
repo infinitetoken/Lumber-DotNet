@@ -1,0 +1,15 @@
+<Project>
+  <!-- Every package version in one place (NuGet's central package management) -->
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="Microsoft.Extensions.Logging.Configuration" Version="10.0.14" />
+    <PackageVersion Include="Serilog" Version="4.4.0" />
+
+    <PackageVersion Include="JsonSchema.Net" Version="9.6.0" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration" Version="10.0.14" />
+    <PackageVersion Include="System.Text.Json" Version="10.0.14" />
+    <PackageVersion Include="xunit.v3" Version="4.0.3" />
+  </ItemGroup>
+</Project>

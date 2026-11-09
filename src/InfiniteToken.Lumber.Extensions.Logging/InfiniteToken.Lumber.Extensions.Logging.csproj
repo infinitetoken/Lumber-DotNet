@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>InfiniteToken.Lumber.Extensions.Logging</RootNamespace>
+    <Description>Microsoft.Extensions.Logging provider for Lumber: sends ILogger logs (ASP.NET Core, workers, Azure Functions) to Lumber, encrypted end to end with AES-256-GCM.</Description>
+    <PackageTags>lumber;logging;ilogger;microsoft-extensions-logging;aspnetcore;cloud-logging;encryption;end-to-end-encryption</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InfiniteToken.Lumber\InfiniteToken.Lumber.csproj" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Configuration" />
+  </ItemGroup>
+
+</Project>

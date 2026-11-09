@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>InfiniteToken.Lumber</RootNamespace>
+    <Description>.NET client for Lumber: cloud logging with end-to-end encryption. Every log is encrypted with AES-256-GCM before it leaves your process. No dependencies.</Description>
+    <PackageTags>lumber;logging;cloud-logging;encryption;end-to-end-encryption;aes-256-gcm</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="InfiniteToken.Lumber.Tests" />
+  </ItemGroup>
+
+</Project>

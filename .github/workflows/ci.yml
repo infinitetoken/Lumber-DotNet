@@ -1,0 +1,38 @@
+name: CI
+run-name: CI - ${{ github.event.pull_request.title || github.event.head_commit.message }}
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        # Windows also runs the tests on .NET Framework 4.8, which runs the netstandard2.0 build
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-dotnet@v6
+        with:
+          # The SDK in global.json builds every target; .NET 8's runtime runs the net8.0 tests
+          global-json-file: global.json
+          dotnet-version: 8.0.x
+      - run: dotnet build -c Release
+      - run: dotnet test -c Release --no-build
+      - run: dotnet pack -c Release --no-build -o artifacts
+
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json
+      - run: dotnet format --verify-no-changes
+      # tests/contract must be Lumber-Kit's contract at the version in tests/contract/VERSION
+      - run: scripts/sync-contract.sh && git diff --exit-code tests/contract
