@@ -252,6 +252,8 @@ public class DeliveryTests
         test.Client.Sender.RetryDelay = _ => TimeSpan.FromMinutes(1);
         test.Api.Respond = (_, _, _) => Task.FromResult(FakeLumber.Answer(503));
         test.Client.Info("Failing");
+        // Disposed during the minute's wait after the first failure, not before the first try
+        Assert.True(SpinWait.SpinUntil(() => test.Warnings.Contains("send failed: HTTP 503"), TimeSpan.FromSeconds(10)));
         var started = Stopwatch.StartNew();
         test.Dispose();
         Assert.True(started.Elapsed < TimeSpan.FromSeconds(3), "disposing took " + started.Elapsed);
