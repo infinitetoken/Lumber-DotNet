@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <!-- The newest LTS and the oldest .NET the packages build for. On Windows, .NET Framework 4.8 too, which runs the
-         netstandard2.0 build: the managed AES-GCM, as on Unity. TestNetFramework=true builds it anywhere. -->
+         netstandard2.0 build and its managed AES-GCM. TestNetFramework=true builds it anywhere. -->
     <TargetFrameworks>net10.0;net8.0</TargetFrameworks>
     <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('Windows')) Or '$(TestNetFramework)' == 'true'">$(TargetFrameworks);net48</TargetFrameworks>
     <OutputType>Exe</OutputType>

@@ -19,7 +19,7 @@ internal sealed class JsonNumber
 }
 
 /// <summary>
-/// JSON without System.Text.Json, so the netstandard2.0 build (.NET Framework, Unity) needs no packages and every build
+/// JSON without System.Text.Json, so the netstandard2.0 build (.NET Framework, Mono) needs no packages and every build
 /// sends the same bytes. <see cref="Normalize(object)"/> turns any value into the few types JSON has, <see cref="Serialize"/>
 /// writes them compactly as UTF-8, and <see cref="Parse"/> reads the API's answers.
 /// </summary>

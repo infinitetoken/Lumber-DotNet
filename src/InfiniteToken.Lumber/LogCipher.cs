@@ -5,7 +5,7 @@ namespace InfiniteToken.Lumber;
 
 /// <summary>
 /// AES-256-GCM in Lumber's layout: the 16-byte auth tag, then the ciphertext. On .NET 8 and later it's the base
-/// library's <c>AesGcm</c>. .NET Standard 2.0 (.NET Framework, Mono, Unity) has no AesGcm, so there it's
+/// library's <c>AesGcm</c>. .NET Standard 2.0 (.NET Framework, Mono) has no AesGcm, so there it's
 /// <see cref="ManagedAesGcm"/>: GCM's counter mode and GHASH over the platform's own AES. Safe for concurrent use.
 /// </summary>
 internal abstract class LogCipher : IDisposable

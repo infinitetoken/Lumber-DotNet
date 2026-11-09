@@ -378,7 +378,7 @@ public sealed class LumberClient : IDisposable
         }
         catch (Exception)
         {
-            // Some platforms (Unity on iOS) won't say
+            // Not every platform will say
         }
         var hostname = Hostname();
         if (!string.IsNullOrEmpty(hostname)) context["hostname"] = hostname;

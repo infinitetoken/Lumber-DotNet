@@ -10,7 +10,7 @@ public class CryptoTests
 {
 #if NET
     /// <summary>
-    /// The managed AES-GCM (the netstandard2.0 build's, for .NET Framework and Unity) gives the same bytes as the
+    /// The managed AES-GCM (the netstandard2.0 build's, for .NET Framework and Mono) gives the same bytes as the
     /// platform's AesGcm, for every length around the block size and a few long ones.
     /// </summary>
     [Fact]

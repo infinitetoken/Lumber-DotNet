@@ -4,7 +4,7 @@
   <!-- The packages -->
   <PropertyGroup>
     <!--
-      netstandard2.0: .NET Framework 4.6.2 and later, Mono and Unity, where AesGcm doesn't exist (see LogCipher).
+      netstandard2.0: .NET Framework 4.6.2 and later and Mono, where AesGcm doesn't exist (see LogCipher).
       net8.0: .NET 8 and 9, and any later .NET that has no build of its own here.
       net10.0: .NET 10, the current LTS.
     -->
